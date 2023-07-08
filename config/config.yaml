@@ -1,0 +1,13 @@
+[NEWS_PARAMETERS]
+api_key = xyx2fDIhdOhUob7uu40W018GVstAOiTB3f-iGZRAXt0
+query = adani
+from = 2023/7/6
+to = 2023/7/7
+language = en
+countries = IN
+
+[PATH]
+article_path = ./output/article.csv
+sentiment_article_path = ./output/sentiment_article_path.csv
+pie_chart_path = ./output/pie_chart.jpg
+
