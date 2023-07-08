@@ -5,6 +5,17 @@ import matplotlib.pyplot as plt
 
 
 def save_articles_to_csv(articles, file_path):
+
+    """
+    Save the fetched news articles to a CSV file.
+
+    Args:
+        articles (list): List of news articles.
+        file_path (str): File path to save the CSV file.
+
+    Returns:
+        pandas.DataFrame: DataFrame containing the news articles.
+    """
     df = pd.DataFrame(articles)
     df.to_csv(file_path, index=False)
     print(f"Saved articles to {file_path}")
@@ -12,6 +23,19 @@ def save_articles_to_csv(articles, file_path):
 
 
 def perform_sentiment_analysis(data, file_path):
+
+    """
+    Perform sentiment analysis on the news articles.
+
+    Args:
+        data (pandas.DataFrame): DataFrame containing the news articles.
+        file_path (str): File path to save the DataFrame with sentiment scores.
+
+    Returns:
+        float: Mean negative sentiment score.
+        float: Mean neutral sentiment score.
+        float: Mean positive sentiment score.
+    """
     analyzer = SentimentIntensityAnalyzer()
     negative = []
     neutral = []
@@ -35,7 +59,16 @@ def perform_sentiment_analysis(data, file_path):
 
 
 def save_sentiment_pie_chart(negative_score, neutral_score, positive_score, file_path, q):
+    """
+    Save a pie chart visualizing the sentiment distribution.
 
+    Args:
+        negative_score (float): Mean negative sentiment score.
+        neutral_score (float): Mean neutral sentiment score.
+        positive_score (float): Mean positive sentiment score.
+        file_path (str): File path to save the pie chart.
+        query (str): Query used to fetch the news articles.
+    """
     # Create a pie chart
     labels = ['Positive', 'Negative', 'Neutral']
     sizes = [positive_score, negative_score, neutral_score]
@@ -58,6 +91,20 @@ class FinancialNewsAnalysis:
 
     def fetch_articles(self, query, from_date, to_date, language='en', countries=None,
                        page_size=1000):
+        """
+                Fetch news articles based on the specified parameters.
+
+                Args:
+                    query (str): Query to search for news articles.
+                    from_date (str): Start date for the news articles (format: YYYY/MM/DD).
+                    to_date (str): End date for the news articles (format: YYYY/MM/DD).
+                    language (str, optional): Language of the news articles (default: 'en').
+                    countries (str or list, optional): Countries to filter the news articles (default: None).
+                    page_size (int, optional): Number of articles to fetch per page (default: 1000).
+
+                Returns:
+                    dict: Dictionary containing the fetched news articles.
+                """
         articles = self.api.get_search(
             q=query,
             from_=from_date,
